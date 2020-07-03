@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block head %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ user.name }}'s Watchlist</title>
+    <link rel="icon" href="{{ url_for('static', filename='cute.png') }}">
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="{{ url_for('static', filename='js/jquery-3.4.1.min.js') }}"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-select.min.css') }}">
+    <!-- popper.min.js 用于弹窗、提示、下拉菜单 -->
+    <script src="https://cdn.bootcss.com/popper.js/1.12.5/umd/popper.min.js"></script>
+    <!-- 最新的 Bootstrap4 核心 JavaScript 文件 -->
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+    <!-- 侧边栏 -->
+    <link href="{{ url_for('static', filename='css/canvi.css') }}" rel="stylesheet" type="text/css">
+    <!-- chatbox -->
+    <link type="text/css" href="{{ url_for('static', filename='css/litewebchat.min.css') }}" rel="stylesheet" />
+    <!-- fonticon -->
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="{{ url_for('static', filename='js/bootstrap-select.min.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" type="text/css">
+    <!-- 背景动画 -->
+	<canvas id="c_n9" width="1920" height="990" style="position: fixed; top: 0px; left: 0px; z-index: -1; opacity: 0.5;"></canvas>
+	<script src="https://files.cnblogs.com/files/jingmoxukong/canvas-nest.min.js"></script>
+    {% endblock %}
+</head>
+<body>
+    {% for message in get_flashed_messages() %}
+	<div class="alert">{{ message }}</div>
+    {% endfor %}
+    <h2>
+        <img alt="Avatar" class="avatar" src="{{ url_for('static', filename='images/avatar.png') }}">
+        {{ user.name }}'s Watchlist
+    </h2>
+    <nav>
+        <ul>
+            {% if current_user.is_authenticated %}
+	            <li><a href="{{ url_for('settings') }}">Settings</a></li>
+	            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+            {% else %}
+	            <li><a href="{{ url_for('login') }}">Login</a></li>
+            {% endif %}
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+        </ul>
+    </nav>
+    {% block content %}{% endblock %}
+    <footer>
+        <small>&copy; 2018 <a href="http://helloflask.com/tutorial">HelloFlask</a></small>
+	</footer>
+</body>
+</html>
