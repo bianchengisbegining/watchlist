@@ -2,8 +2,9 @@
 *~
 __pycache__
 .DS_Store
+.env
+*.db
 htmlcov/
 .coverage
-.env
-Pipfile
-Pipfile.lock
+venv
+env
